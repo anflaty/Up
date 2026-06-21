@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زيادة متابعين - تزويد الأخضر</title>
+    <!-- استيراد خطوط جوجل ومكتبة الأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #2ecc71;
+            --dark-green: #27ae60;
+            --bg-dark: #121814;
+            --card-bg: #1e2721;
+            --text-light: #ffffff;
+            --text-gray: #a0a7a2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-green);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.1);
+        }
+
+        header h1 {
+            color: var(--primary-green);
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 40px auto;
+            flex-grow: 1;
+        }
+
+        /* شاشة 1: اختيار المنصة */
+        .section-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .section-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .platform-card {
+            background: var(--card-bg);
+            border: 2px solid #2c3e50;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .platform-card:hover {
+            border-color: var(--primary-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
+        }
+
+        .platform-card i {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .snap-icon { color: #fffc00; text-shadow: 0 0 10px rgba(255, 252, 0, 0.3); }
+        .tiktok-icon { color: #00f2fe; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
+
+        .platform-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* شاشة 2: باقات المتابعين */
+        .sub-panel {
+            display: none;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            background: none;
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-green);
+            color: #fff;
+        }
+
+        .quantity-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .quantity-box {
+            background: rgba(255,255,255,0.03);
+            border: 2px solid #2c3e50;
+            padding: 18px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quantity-box:hover {
+            border-color: var(--primary-green);
+            background: rgba(46, 204, 113, 0.1);
+        }
+
+        .badge-free {
+            background: var(--dark-green);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            background: #0b0f0c;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>تـزويد الأخـضر</h1>
+        <p>المنصة الأسرع لزيادة متابعيك مجاناً</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- الواجهة 1: اختيار المنصة -->
+        <div class="section-panel" id="mainPanel">
+            <div class="platform-card" onclick="openPlatform('سناب شات')">
+                <i class="fab fa-snapchat snap-icon"></i>
+                <h2>سناب شات</h2>
+                <p>اضغط للبدء في تزويد المتابعين</p>
+            </div>
+            <div class="platform-card" onclick="openPlatform('تيك توك')">
+                <i class="fab fa-tiktok tiktok-icon"></i>
+                <h2>تيك توك</h2>
+                <p>اضغط للبدء في تزويد المتابعين</p>
+            </div>
+        </div>
+
+        <!-- الواجهة 2: باقة الـ 200 متابع -->
+        <div class="sub-panel" id="subPanel">
+            <button class="back-btn" onclick="goBackToMain()"><i class="fas fa-arrow-right"></i> عودة للأعلى</button>
+            <h2 id="panelTitle">باقة زيادة متابعين</h2>
+            <p style="color: var(--text-gray); margin-bottom: 20px;">اختر كمية المتابعين المتاحة للانتقال لصفحة التسجيل:</p>
+
+            <div class="quantity-options">
+                <!-- عند الضغط هنا، يتم الانتقال مباشرة لموقعك الآخر -->
+                <div class="quantity-box" onclick="redirectToExternalPage()">
+                    <span><i class="fas fa-user-plus" style="color: var(--primary-green); margin-left: 10px;"></i> 200 متابع</span>
+                    <span class="badge-free">متوفر مجاناً - اضغط للتسجيل</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 تزويد الأخضر. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        let selectedPlatform = "";
+
+        // فتح باقة المنصة المحددة
+        function openPlatform(name) {
+            selectedPlatform = name;
+            document.getElementById('mainPanel').style.display = 'none';
+            document.getElementById('subPanel').style.display = 'block';
+            document.getElementById('panelTitle').innerText = "باقة زيادة متابعين " + name;
+        }
+
+        // العودة للرئيسية
+        function goBackToMain() {
+            document.getElementById('subPanel').style.display = 'none';
+            document.getElementById('mainPanel').style.display = 'grid';
+        }
+
+        // التوجيه التلقائي إلى موقعك الآخر
+        function redirectToExternalPage() {
+            // ضع رابط موقعك الآخر كاملاً هنا بين علامتي التنصيص (مثال: https://google.com)
+            const targetUrl = "رابط_موقعك_الآخر_هنا"; 
+            
+            // التوجيه للموقع
+            window.location.href = targetUrl;
+        }
+    </script>
+</body>
+</html>
+
